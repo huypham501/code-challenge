@@ -2,15 +2,20 @@ import { Dispatch, useEffect, useRef, useState } from "react";
 import { TCurrency, listCurrencyFrequentUse, listCurrencyNotFrequentUse } from "../../util/settings";
 import { TAmountCrypt } from "../../hooks/useConvert";
 import { useDebounceEffect } from "../../hooks/useDebounce";
+import { ExtendClassName } from "../../util/types";
+import { getPriceCurrency } from "../../util/utils";
+import { useSVGIcon } from "../../hooks/useSVGIcon";
 
-type TInputForm = TAmountCrypt & {
-	isDisable: boolean;
-	handleChangeValue: Dispatch<React.SetStateAction<TAmountCrypt>>;
-};
+type TInputForm = TAmountCrypt &
+	ExtendClassName & {
+		isDisable: boolean;
+		handleChangeValue: Dispatch<React.SetStateAction<TAmountCrypt>>;
+	};
 
 export const InputForm = ({
 	isDisable, //
 	handleChangeValue,
+	className,
 	amount,
 	currency,
 }: TInputForm) => {
@@ -22,6 +27,9 @@ export const InputForm = ({
 		}
 		ref_input.current.value = amount.toString();
 	}, [amount]);
+
+	// Logic update icon of currency
+	const { icon } = useSVGIcon(currency);
 
 	// More option portal logic
 	const ref_moreOptionPortal = useRef<HTMLUListElement>(null);
@@ -94,25 +102,31 @@ export const InputForm = ({
 		300,
 	);
 
-	// Clear "0" number on first click
-	const [isFirstInputFocus, setIsFirstInputFocus] = useState<boolean>(false);
+	// Clear "0" on click
 	useEffect(() => {
 		if (!ref_input.current) {
-			return
+			return;
 		}
-		ref_input.current.addEventListener("focus", handleFirstFocus);
-	}, [])
-	const handleFirstFocus = () => {
-		if (isFirstInputFocus || !ref_input.current) {
-			return
+		ref_input.current.addEventListener("focus", handleFocusInputField);
+		ref_input.current.addEventListener("focusout", handleFocusOutInputField);
+	}, []);
+
+	const handleFocusInputField = () => {
+		if (!ref_input.current || ref_input.current.value !== "0") {
+			return;
 		}
 		ref_input.current.value = "";
-		ref_input.current.removeEventListener("focus", handleFirstFocus);
-		setIsFirstInputFocus(true)
-	}
+	};
+
+	const handleFocusOutInputField = () => {
+		if (!ref_input.current || ref_input.current.value !== "") {
+			return;
+		}
+		ref_input.current.value = "0";
+	};
 
 	return (
-		<div className="input-form-container">
+		<div className={`input-form-container ${className ? className : ""}`}>
 			<div className="switch-currency-container">
 				<ul className="list-frequent-currency">
 					{listOptionsDisplay.map((item) => (
@@ -152,13 +166,21 @@ export const InputForm = ({
 					</ul>
 				)}
 			</div>
-			<input
-				type="number"
-				className={`amount-input ${isDisable ? "disable" : ""}`}
-				disabled={isDisable}
-				ref={ref_input}
-				onChange={(event) => setInput(parseInt(event.currentTarget.value))}
-			/>
+			<div className="input-field-container">
+				<input
+					type="number"
+					className={`amount-input ${isDisable ? "disable" : ""}`}
+					disabled={isDisable}
+					ref={ref_input}
+					onChange={(event) => setInput(parseInt(event.currentTarget.value))}
+				/>
+				<img
+					src={icon}
+					alt={`${currency}.svg`}
+					className="currency-icon"
+				/>
+				<div className="rate-price">{currency !== "USD" ? `1 ${currency} = ${getPriceCurrency(currency)} USD` : ""}</div>
+			</div>
 		</div>
 	);
 };

@@ -25,7 +25,7 @@ $blue-color-20: #00ADB5;
 
 // COLOR SPEC
 $disable-color: $black-color-2;
-$success-color:#36d64c;
+$success-color: #36d64c;
 $error-color: #ff4949;
 $medium-color: #FFA400;
 $low-color: #DCF763;
@@ -33,34 +33,6 @@ $low-color: #DCF763;
 // APP
 $app-border-radius: 5px;
 $app-border-color: rgba(0, 0, 0, .2);
-
-// PROGRESS RING
-$ring-size: 15px;
-$ring-core-size: 0.6 * $ring-size;
-$ring-border-size: 0.12 * $ring-size;
-$ring-border-radius: 50%;
-
-// PROGRESS BAR
-$progress-bar-size: 1.25rem;
-$progress-bar-background-color: $blue-color-4;
-$progress-bar-background-color-pulse: $blue-color-5;
-
-// BUTTON
-$primary-button-background-color: $blue-color-3;
-$primary-button-background-color-hover: $blue-color-2;
-$secondary-button-boder-color: $black-color-5;
-$secondary-button-boder-color-hover: $black-color-4;
-$secondary-button-shadow: inset $secondary-button-boder-color 0 0 0 1px;
-$secondary-button-shadow-hover: inset $secondary-button-boder-color-hover 0 0 0 1px;
-
-// TOGGLE BUTTON
-$toggle-indicator-size: 18px;
-$toggle-track-height: $toggle-indicator-size + 5;
-$toggle-track-width: $toggle-indicator-size * 2.5;
-$toggle-focus-ring: 0px 0px 0px 2px black;
-$toggle-indicator-speed: 0.25s;
-$toggle-check-mark-height: $toggle-indicator-size - 4;
-$toggle-check-mark-width: $toggle-check-mark-height;
 
 // MEDIA
 $XS: 480px;

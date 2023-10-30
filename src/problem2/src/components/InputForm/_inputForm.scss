@@ -2,6 +2,8 @@
 
 div.input-form-container {
     div.switch-currency-container {
+        position: relative;
+
         ul.list-frequent-currency {
             display: flex;
             flex-direction: row;
@@ -60,11 +62,16 @@ div.input-form-container {
             display: flex;
             flex-direction: column;
             font-size: 0.75rem;
-            height: 10rem;
+            height: 15rem;
             overflow-y: scroll;
+            position: absolute;
+            right: 2rem;
+            top: 2rem;
             width: fit-content;
+            z-index: 10;
 
             li.item {
+                background-color: $black-color-6;
                 border: 1px solid $black-color-5;
                 padding: 0.5rem;
                 text-transform: uppercase;
@@ -82,28 +89,53 @@ div.input-form-container {
         }
     }
 
-    input.amount-input {
-        border-color: $black-color-5;
-        border-radius: $app-border-radius;
-        border-width: 1px;
-        height: 5rem;
-        margin: 1rem 0;
-        transition: box-shadow 150ms ease-in-out;
-        width: 15rem;
 
-        &:focus {
-            outline-width: 0;
+    div.input-field-container {
+        position: relative;
+
+        input.amount-input {
+            border-color: $black-color-5;
+            border-radius: $app-border-radius;
+            border-width: 1px;
+            font-size: 2rem;
+            font-weight: bold;
+            height: 9rem;
+            margin: 1rem 0;
+            padding: 0.5rem;
+            padding-bottom: 2rem;
+            padding-top: 2rem;
+            transition: box-shadow 150ms ease-in-out;
+            width: 20rem;
+
+            &:focus {
+                outline-width: 0;
+            }
+
+            &:not(.disable):hover {
+                box-shadow:
+                    rgba(0, 0, 0, 0.05) 0px 0px 0px 1px,
+                    rgb(209, 213, 219) 0px 0px 0px 1px inset;
+            }
+
+            &:focus {
+                box-shadow: $blue-color-6 0px 0px 0px 3px;
+                outline: none;
+            }
         }
 
-        &:not(.disable):hover {
-            box-shadow:
-                rgba(0, 0, 0, 0.05) 0px 0px 0px 1px,
-                rgb(209, 213, 219) 0px 0px 0px 1px inset;
+        img.currency-icon {
+            left: 0.5rem;
+            position: absolute;
+            top: 1.5rem;
         }
 
-        &:focus {
-            box-shadow: $blue-color-6 0px 0px 0px 3px;
-            outline: none;
+        div.rate-price {
+            bottom: 2rem;
+            color: $black-color-3;
+            font-size: 0.75rem;
+            font-weight: bold;
+            left: 0.75rem;
+            position: absolute;
         }
     }
 }
