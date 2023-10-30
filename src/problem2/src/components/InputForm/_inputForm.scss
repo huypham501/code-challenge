@@ -1,0 +1,109 @@
+@use "../../styles/variables" as *;
+
+div.input-form-container {
+    div.switch-currency-container {
+        ul.list-frequent-currency {
+            display: flex;
+            flex-direction: row;
+            font-size: 0.75rem;
+            width: fit-content;
+
+            li.item {
+                border: 1px solid $black-color-5;
+                border-left-width: 0px;
+                padding: 0.5rem;
+                text-transform: uppercase;
+
+                &:first-child {
+                    border-bottom-left-radius: $app-border-radius;
+                    border-left-width: 1px;
+                    border-top-left-radius: $app-border-radius;
+                }
+
+                &:hover {
+                    background-color: $black-color-7;
+                    cursor: pointer;
+                }
+
+                &.active {
+                    background-color: $blue-color-3;
+                    border-color: $black-color-4;
+                    color: $black-color-7;
+                    font-weight: bold;
+                }
+            }
+
+            button#more-options-button {
+                border-bottom-right-radius: $app-border-radius;
+                border-color: $black-color-7;
+                border-left: none;
+                border-top-right-radius: $app-border-radius;
+                border-width: 1px;
+                width: 1rem;
+
+                &:active {
+                    border-style: outset;
+                }
+
+                svg.arrow-icon {
+                    fill: $black-color-2;
+                    transition: 0.4s ease;
+
+                    &.active {
+                        transform: rotate(180deg);
+                    }
+                }
+            }
+        }
+
+        ul.list-more-option {
+            display: flex;
+            flex-direction: column;
+            font-size: 0.75rem;
+            height: 10rem;
+            overflow-y: scroll;
+            width: fit-content;
+
+            li.item {
+                border: 1px solid $black-color-5;
+                padding: 0.5rem;
+                text-transform: uppercase;
+
+                &:last-child {
+                    border-bottom-left-radius: $app-border-radius;
+                    border-bottom-right-radius: $app-border-radius;
+                }
+
+                &:hover {
+                    background-color: $black-color-7;
+                    cursor: pointer;
+                }
+            }
+        }
+    }
+
+    input.amount-input {
+        border-color: $black-color-5;
+        border-radius: $app-border-radius;
+        border-width: 1px;
+        height: 5rem;
+        margin: 1rem 0;
+        transition: box-shadow 150ms ease-in-out;
+        width: 15rem;
+
+        &:focus {
+            outline-width: 0;
+        }
+
+        &:not(.disable):hover {
+            box-shadow:
+                rgba(0, 0, 0, 0.05) 0px 0px 0px 1px,
+                rgb(209, 213, 219) 0px 0px 0px 1px inset;
+        }
+
+        &:focus {
+            box-shadow: $blue-color-6 0px 0px 0px 3px;
+            outline: none;
+        }
+    }
+}
