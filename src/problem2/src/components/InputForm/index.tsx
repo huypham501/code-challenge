@@ -58,8 +58,8 @@ export const InputForm = ({
 
 	// List logic
 	const [selectedCurrency, setSelectedCurrency] = useState<TCurrency>(currency);
-	const [listOptionsDisplay, setListOptionsDisplay] = useState<TCurrency[]>(listCurrencyFrequentUse);
-	const [listOptionsCollapsed, setListOptionsCollapsed] = useState<TCurrency[]>(listCurrencyNotFrequentUse);
+	const [listOptionsDisplay, setListOptionsDisplay] = useState<TCurrency[]>([...listCurrencyFrequentUse]);
+	const [listOptionsCollapsed, setListOptionsCollapsed] = useState<TCurrency[]>([...listCurrencyNotFrequentUse]);
 
 	const selectCurrencyFromMoreOption = (event: React.MouseEvent<HTMLElement>) => {
 		const _selectedCurrency = event.currentTarget.textContent as TCurrency;
@@ -72,7 +72,9 @@ export const InputForm = ({
 
 		handleMoreOptionsButton();
 
-		const listOptionsCollapsedTemp = listOptionsCollapsed.filter((item) => item !== selectedCurrency);
+		const listOptionsCollapsedTemp = listOptionsCollapsed.filter((item) => {
+			return item !== _selectedCurrency;
+		});
 		listOptionsCollapsedTemp.unshift(lastOptionInDisplay);
 		setListOptionsCollapsed(listOptionsCollapsedTemp);
 	};
