@@ -60,14 +60,6 @@ function App() {
 					className="input-right"
 				/>
 			</div>
-			{/* <form>
-				<label htmlFor="input-amount">Amount to send</label>
-				<input id="input-amount" />
-
-				<label htmlFor="output-amount">Amount to receive</label>
-				<input id="output-amount" />
-
-			</form> */}
 		</div>
 	);
 }

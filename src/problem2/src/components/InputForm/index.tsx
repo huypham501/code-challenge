@@ -174,7 +174,7 @@ export const InputForm = ({
 					className={`amount-input ${isDisable ? "disable" : ""}`}
 					disabled={isDisable}
 					ref={ref_input}
-					onChange={(event) => setInput(parseInt(event.currentTarget.value))}
+					onChange={(event) => setInput(parseFloat(event.currentTarget.value))}
 				/>
 				<img
 					src={icon}
